@@ -42,5 +42,5 @@ This project is a **Role-Based Access Control (RBAC) Dashboard** built using **R
 1. **Clone the repository**:
 
    ```bash
-   git clone https://github.com/yourusername/rbac-dashboard.git
+   git clone https://github.com/Nitish76kumar/FrontendDeveloperInternAssignmentVRVSecurity.git
    cd rbac-dashboard
