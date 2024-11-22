@@ -21,6 +21,7 @@ const UserForm = ({ onSave, editingUser }) => {
       role,
       status,
     });
+    // Clear the form after saving or updating
     setUsername("");
     setRole("");
     setStatus("");
@@ -90,7 +91,8 @@ const UserForm = ({ onSave, editingUser }) => {
         type="submit"
         className="mt-4 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 text-sm sm:text-base"
       >
-        Save
+        {editingUser ? "Update" : "Save"}{" "}
+        {/* Change button text based on editingUser */}
       </button>
     </form>
   );

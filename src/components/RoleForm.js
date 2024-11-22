@@ -26,9 +26,11 @@ const RoleForm = ({ onSave, editingRole }) => {
       permissions: Array.isArray(permissions) ? permissions : [],
     });
 
-    // Reset form after submission
-    setName("");
-    setPermissions(["Read", "Write", "Delete"]);
+    // Reset form after submission if creating a new role
+    if (!editingRole) {
+      setName("");
+      setPermissions(["Read", "Write", "Delete"]);
+    }
   };
 
   return (
@@ -81,7 +83,8 @@ const RoleForm = ({ onSave, editingRole }) => {
         type="submit"
         className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 w-full sm:w-auto"
       >
-        Save Role
+        {editingRole ? "Update Role" : "Save Role"}{" "}
+        {/* Conditionally change button text */}
       </button>
     </form>
   );

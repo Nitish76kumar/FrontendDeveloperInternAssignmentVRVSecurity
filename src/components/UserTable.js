@@ -32,28 +32,28 @@ const UserTable = ({ users, onDelete, onEdit, onToggleStatus }) => {
               <td className="px-6 py-4 text-sm text-gray-800 dark:text-gray-200">
                 <button
                   onClick={() => onToggleStatus(user.id)}
-                  className={`px-3 py-1 rounded-full ${
-                    user.status === "Active" ? "bg-green-500" : "bg-yellow-500"
-                  } text-white text-xs sm:text-sm`}
+                  className={`px-3 py-1 rounded-lg ${
+                    user.status === "Active"
+                      ? "bg-green-500 text-white"
+                      : "bg-red-500 text-white"
+                  }`}
                 >
-                  {user.status === "Active" ? "Deactivate" : "Activate"}
+                  {user.status}
                 </button>
               </td>
-              <td className="px-6 py-4 text-sm">
-                <div className="flex space-x-2">
-                  <button
-                    onClick={() => onEdit(user.id)}
-                    className="px-3 py-1 bg-blue-600 text-white rounded-full text-xs sm:text-sm"
-                  >
-                    Edit
-                  </button>
-                  <button
-                    onClick={() => onDelete(user.id)}
-                    className="px-3 py-1 ml-2 bg-red-600 text-white rounded-full text-xs sm:text-sm"
-                  >
-                    Delete
-                  </button>
-                </div>
+              <td className="px-6 py-4 text-sm text-gray-800 dark:text-gray-200">
+                <button
+                  onClick={() => onEdit(user.id)}
+                  className="px-4 py-2 bg-yellow-500 text-white rounded-lg hover:bg-yellow-600"
+                >
+                  Edit
+                </button>
+                <button
+                  onClick={() => onDelete(user.id)}
+                  className="ml-2 px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600"
+                >
+                  Delete
+                </button>
               </td>
             </tr>
           ))}

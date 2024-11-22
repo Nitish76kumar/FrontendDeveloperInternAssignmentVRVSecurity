@@ -27,15 +27,28 @@ const RoleTable = ({ roles, onDelete, onEdit }) => {
                 {role.permissions.join(", ")}
               </td>
               <td className="px-6 py-4 text-sm flex justify-start gap-2">
+                {/* Edit button is active if 'Write' permission is present */}
                 <button
                   onClick={() => onEdit(role.id)}
-                  className="px-3 py-1 bg-blue-600 text-white rounded-full text-xs sm:text-sm"
+                  disabled={!role.permissions.includes("Write")}
+                  className={`px-3 py-1 text-xs sm:text-sm rounded-full ${
+                    role.permissions.includes("Write")
+                      ? "bg-blue-600 text-white hover:bg-blue-700"
+                      : "bg-gray-400 text-gray-600 cursor-not-allowed"
+                  }`}
                 >
                   Edit
                 </button>
+
+                {/* Delete button is active if 'Delete' permission is present */}
                 <button
                   onClick={() => onDelete(role.id)}
-                  className="px-3 py-1 ml-2 bg-red-600 text-white rounded-full text-xs sm:text-sm"
+                  disabled={!role.permissions.includes("Delete")}
+                  className={`px-3 py-1 ml-2 text-xs sm:text-sm rounded-full ${
+                    role.permissions.includes("Delete")
+                      ? "bg-red-600 text-white hover:bg-red-700"
+                      : "bg-gray-400 text-gray-600 cursor-not-allowed"
+                  }`}
                 >
                   Delete
                 </button>

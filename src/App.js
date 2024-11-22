@@ -21,7 +21,6 @@ const App = () => {
   const [theme, setTheme] = useState("light");
 
   useEffect(() => {
-    // Apply dark or light theme class to body
     document.body.classList.toggle("dark", theme === "dark");
   }, [theme]);
 
@@ -34,11 +33,34 @@ const App = () => {
   };
 
   const handleSaveUser = (user) => {
-    setUsers([...users, { id: Date.now(), ...user }]);
+    if (editingUser) {
+      setUsers(
+        users.map((u) =>
+          u.id === editingUser.id
+            ? {
+                ...u,
+                username: user.username,
+                role: user.role,
+                status: user.status,
+              }
+            : u
+        )
+      );
+    } else {
+      setUsers([...users, { id: Date.now(), ...user }]);
+    }
+    setEditingUser(null);
   };
 
   const handleSaveRole = (role) => {
-    setRoles([...roles, role]);
+    if (editingRole) {
+      setRoles(
+        roles.map((r) => (r.id === editingRole.id ? role : r))
+      );
+    } else {
+      setRoles([...roles, role]);
+    }
+    setEditingRole(null); // Clear the editing state after saving
   };
 
   const handleDeleteUser = (id) => {
@@ -80,7 +102,6 @@ const App = () => {
         toggleTheme={toggleTheme}
         theme={theme}
       />
-
       {activeTab === "user" ? (
         <>
           <UserForm onSave={handleSaveUser} editingUser={editingUser} />
@@ -101,8 +122,7 @@ const App = () => {
           />
         </>
       )}
-      
-      <Footer/>
+      <Footer />
     </div>
   );
 };
